@@ -10,6 +10,15 @@ button {
 </head>
 <body>
 
+<br/>
+  
+<b style="color:red;">Check Alarm. Press ON</b>
+<button onclick="document.getElementById('audiotag1').play();">ON</button>
+<button onclick="location.reload(true);">OFF</button>
+
+<br/>
+<br/>
+
 <p>0.1 minutes  = 6 seconds</p>
 <p>0.2 minutes  = 12 seconds</p>
 <p>0.25 minutes = 15 seconds</p>
@@ -22,14 +31,9 @@ button {
 <p>0.8 minutes  = 48 seconds</p>
 <p>0.9 minutes  = 54 seconds</p>
 
-<!-- 
-Audio file sourced from wikipedia. Authored by Mr Jono Bacon.
-https://commons.wikimedia.org/wiki/File:FSsongmetal2-MP3-LAME3.99.5-158kbps.oga
-http://www.jonobacon.org/2011/06/15/metal-free-software-song-2-this-time-its-personal/
--->
-<audio id="audiotag1" src="sound/Category_MP3_FSsongmetal2_MP3_LAME3.99.5_158kbps.oga" preload="auto"></audio>
+<audio id="audiotag1" src="YourSoundfile.mp4" preload="auto"></audio>
 
-<br/><br/>
+<br/>
 
 <input type="text" id="txt" size="100" value="Please Type Number (in minutes). Please press START">
 
@@ -38,7 +42,7 @@ http://www.jonobacon.org/2011/06/15/metal-free-software-song-2-this-time-its-per
 <button onclick="myFunction()">START</button>
 <button onclick="location.reload(true);">RESET</button>
 
-<script type="text/javascript">
+<script>
 /*
 Used this method describe in this stackoverflow question
 http://stackoverflow.com/questions/9419263/playing-audio-with-javascript
@@ -46,16 +50,17 @@ http://stackoverflow.com/questions/9419263/playing-audio-with-javascript
 Specifically this website mentioned in answer by Shanabus
 http://www.storiesinflight.com/html5/audio.html
 
-Note: YourSoundFile.webm must be inserted in the same directory as this code.
+Note: YourSoundFile.mp4 must be inserted in the same directory as this code.
 */
 
-	function myFunction() {
-	  var TimerValue = document.getElementById("txt").value;
-        TimerValue = TimerValue*60000; //Convert minutes to milliseconds for setTimeout function		
-	  var x = document.getElementById("txt");
-		setTimeout(function(){x.value="Timer ends in " + (TimerValue/60000) + " minutes or " +TimerValue+ " milli seconds."}, 1000);
-		myVar = setTimeout(function(){ document.getElementById('audiotag1').play(); x.value="Finished"}, TimerValue);
-	}
+ function myFunction() {
+     var TimerValue = document.getElementById("txt").value;
+         TimerValue = TimerValue*60000; //Convert minutes to milliseconds for setTimeout function		
+              var x = document.getElementById("txt");
+                  x.style.color = "red";
+  setTimeout(function(){x.value="Timer ends in " + (TimerValue/60000) + " minutes (or " +TimerValue+ " milli seconds.)"}, 1000 );
+  myVar = setTimeout(function(){ document.getElementById('audiotag1').play(); x.value="Finished"}, TimerValue);
+ }
 
 </script>
 </body>
