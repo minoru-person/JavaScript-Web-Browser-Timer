@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>JavaScript Minute Timer</title>
-<style>
-button {
-   display: inline;
-}
-</style>
+   <title>JavaScript Minute Timer</title>
+      <style>
+         button {
+                  display: inline;
+                }
+      </style>
 </head>
+
 <body>
 
-<br/>
-  
-<b style="color:red;">Check Alarm. Press ON</b>
-<button onclick="document.getElementById('audiotag1').play();">ON</button>
-<button onclick="location.reload(true);">OFF</button>
+<button onclick = "location.reload(true);">RESET</button>
 
-<br/>
-<br/>
+<br/><br/><br/>
 
-<p>0.1 minutes  = 6 seconds</p>
-<p>0.2 minutes  = 12 seconds</p>
-<p>0.25 minutes = 15 seconds</p>
-<p>0.3 minutes  = 18 seconds</p>
-<p>0.4 minutes  = 24 seconds</p>
-<p>0.5 minutes  = 30 seconds</p>
-<p>0.6 minutes  = 36 seconds</p>
-<p>0.7 minutes  = 42 seconds</p>
-<p>0.75 minutes = 45 seconds</p>
-<p>0.8 minutes  = 48 seconds</p>
-<p>0.9 minutes  = 54 seconds</p>
-
-<audio id="audiotag1" src="YourSoundfile.mp4" preload="auto"></audio>
+<b style = "color:red;"> Audio Check. </b>
+<button onclick = "document.getElementById('audiotag1').play();">Play Audio</button>
+<button onclick = "location.reload(true);">Stop Audio</button>
 
 <br/>
 
-<input type="text" id="txt" size="100" value="Please Type Number (in minutes). Please press START">
+<audio id = "audiotag1" src = "YourSoundFile.mp4" preload = "auto"></audio>
 
-<br/>
+<br/><br/>
 
-<button onclick="myFunction()">START</button>
-<button onclick="location.reload(true);">RESET</button>
+<input type = "text" id = "input" size = "65" value = "Please Type Number (in minutes). Please press START">
+<button onclick = "startCount();">START TIMER</button>
+<button onclick = "stopCount()">PAUSE TIMER</button>                               
+
+<br/><br/><br/>
+
+<input type="text" id="counter" size = "4"> seconds
+
+<br/><br/>
+
+<input type="text" id="txt" size = "65">
 
 <script>
+  
 /*
 Used this method describe in this stackoverflow question
 http://stackoverflow.com/questions/9419263/playing-audio-with-javascript
@@ -51,16 +48,49 @@ Specifically this website mentioned in answer by Shanabus
 http://www.storiesinflight.com/html5/audio.html
 
 Note: YourSoundFile.mp4 must be inserted in the same directory as this code.
+
+Used code from w3schools. SetTimeout, ON/OFF.
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_settimeout_cleartimeout2
 */
 
- function myFunction() {
-     var TimerValue = document.getElementById("txt").value;
-         TimerValue = TimerValue*60000; //Convert minutes to milliseconds for setTimeout function		
-              var x = document.getElementById("txt");
-                  x.style.color = "red";
-  setTimeout(function(){x.value="Timer ends in " + (TimerValue/60000) + " minutes (or " +TimerValue+ " milli seconds.)"}, 1000 );
-  myVar = setTimeout(function(){ document.getElementById('audiotag1').play(); x.value="Finished"}, TimerValue);
- }
+var c = 0;
+var t;
+var timer_is_on = 0;
+
+function timedCount() {
+
+    var Timer = document.getElementById("input");
+    var TimerValue = Timer.value;
+
+    var TimerText = document.getElementById("txt");
+        TimerText.style.color = "red";
+        
+    TimerText.value = "Timer ends in " + TimerValue + " minute."
+
+    // When counter reaches specified time. Play Audio File.
+    if(c == TimerValue*60){
+        return document.getElementById('audiotag1').play();
+    }
+
+    document.getElementById("counter").value = c;
+    c = c + 1;
+    t = setTimeout(function(){ timedCount() }, 1000);
+
+}
+
+function startCount() {
+
+   if (!timer_is_on) {
+        timer_is_on = 1;
+        timedCount();
+   }
+}
+
+function stopCount() {
+
+    clearTimeout(t);
+    timer_is_on = 0;
+}
 
 </script>
 </body>
