@@ -14,27 +14,29 @@
 
 <button onclick = "location.reload(true);">RESET</button>
 
-<br/><br/><br/>
+<br/><br/><br/><br/>
 
 <b style = "color:red;"> Audio Check. </b>
 <button onclick = "document.getElementById('audiotag1').play();">Play Audio</button>
 <button onclick = "location.reload(true);">Stop Audio</button>
 
-<br/>
-
 <audio id = "audiotag1" src = "YourSoundFile.mp4" preload = "auto"></audio>
 
-<br/><br/>
+<br/><br/><br/><br/>
 
 <input type = "text" id = "input" size = "65" value = "Please Type Number (in minutes). Please press START">
 <button onclick = "startCount();">START TIMER</button>
 <button onclick = "stopCount()">PAUSE TIMER</button>                               
 
-<br/><br/><br/>
+<br/><br/><br/><br/>   
 
-<input type="text" id="counter" size = "4"> seconds
+<input type="text" id="secondsElapse" size = "4"> second(s) has elapsed
 
-<br/><br/>
+<br/>
+   
+<input type="text" id="minuteElapse" size = "4"> minute(s) has elapsed   
+   
+<br/><br/><br/><br/>
 
 <input type="text" id="txt" size = "65">
 
@@ -70,9 +72,13 @@ function timedCount() {
     // When counter reaches specified time. Play Audio File.
     if(c == TimerValue*60){
         return document.getElementById('audiotag1').play();
-    }
+    };
+   
+    if(c % 60 == 0) {
+        document.getElementById("minuteElapse").value = c/60;    
+    };  
 
-    document.getElementById("counter").value = c;
+    document.getElementById("secondsElapse").value = c;
     c = c + 1;
     t = setTimeout(function(){ timedCount() }, 1000);
 
