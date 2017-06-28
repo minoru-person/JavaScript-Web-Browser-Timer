@@ -20,13 +20,14 @@
 <button onclick = "document.getElementById('audiotag1').play();">Play Audio</button>
 <button onclick = "location.reload(true);">Stop Audio</button>
 
-<audio id = "audiotag1" src = "YourSoundFile.mp4" preload = "auto"></audio>
+<!-- link to your personal audio file here-->   
+<audio id = "audiotag1" src = "YourAudioFile.mp4" preload = "auto"></audio>
 
 <br/><br/><br/><br/>
 
-<input type = "text" id = "input" size = "65" value = "Please Type Number (in minutes). Please press START">
-<button onclick = "startCount();">START TIMER</button>
-<button onclick = "stopCount()">PAUSE TIMER</button>                               
+<input type = "text" id = "input" size = "65" value = "Please input time (in minutes) and press START">
+<button onclick = "inputCheck();">START TIMER</button>
+<button onclick = "stopCount();">PAUSE TIMER</button>                               
 
 <br/><br/><br/><br/>   
 
@@ -67,7 +68,7 @@ function timedCount() {
     var TimerText = document.getElementById("txt");
         TimerText.style.color = "red";
         
-    TimerText.value = "Timer ends in " + TimerValue + " minute."
+    TimerText.value =  TimerValue + " minute timer."
 
     // When counter reaches specified time. Play Audio File.
     if(c == TimerValue*60){
@@ -85,7 +86,7 @@ function timedCount() {
 }
 
 function startCount() {
-
+  
    if (!timer_is_on) {
         timer_is_on = 1;
         timedCount();
@@ -96,6 +97,23 @@ function stopCount() {
 
     clearTimeout(t);
     timer_is_on = 0;
+}
+
+// function prevents timer from running without inputing valid number. 
+function inputCheck(){
+
+  var test = document.getElementById("input").value;
+
+      test = test/1; // test would equal NaN if not a valid number.
+
+  // testing for NaN in JavaScript.
+  // https://stackoverflow.com/questions/30314447/how-do-you-test-for-nan-in-javascript
+  if( test !== test){
+      location.reload(true);    
+  } else {
+      startCount(); 
+  }
+  
 }
 
 </script>
