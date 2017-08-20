@@ -21,7 +21,7 @@ function timedCount() {
     var TimerText = document.getElementById("txt");
 
     document.getElementById("txt").style.color = "red";
-    document.getElementById("txt").value =  TimerValue + " minute timer."
+    document.getElementById("txt").value =  TimerValue + " minute timer.";
 
     // When counter reaches specified time. Play Audio File.
     if(c == TimerValue * 60){
