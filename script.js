@@ -5,7 +5,7 @@ http://stackoverflow.com/questions/9419263/playing-audio-with-javascript
 Specifically this website mentioned in answer by Shanabus
 http://www.storiesinflight.com/html5/audio.html
 
-Note: YourSoundFile.mp4 must be inserted in the same directory as this code.
+Note: YourSoundFile.mp4 must be in the same directory as this file.
 
 Used code from w3schools. SetTimeout, ON/OFF.
 https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_settimeout_cleartimeout2
