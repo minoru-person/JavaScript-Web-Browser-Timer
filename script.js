@@ -35,7 +35,6 @@ function timedCount() {
     document.getElementById("secondsElapse").value = c;
     c = c + 1;
     t = setTimeout(function(){ timedCount() }, 1000);
-
 }
 
 function startCount() {    
